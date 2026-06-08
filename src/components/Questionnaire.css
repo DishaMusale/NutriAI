@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --cream: #f5f5dc;
+    --light-green: #d4e6b5;
+    --mid-green: #2d6a2d;
+    --dark-green: #1a4d1a;
+    --text-dark: #1a3a1a;
+    --text-light: #ffffff;
+  }
+  
+  body {
+    background-color: var(--cream);
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-dark);
+  }
+  
+  .questionnaire-container {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .main-title {
+    background-color: var(--dark-green);
+    color: var(--text-light);
+    padding: 24px 32px;
+    border-radius: 12px;
+    font-size: 22px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  /* Progress Bar */
+  .progress-bar-container {
+    background-color: #ffffff;
+    border-radius: 50px;
+    height: 10px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    border: 1px solid var(--mid-green);
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--dark-green);
+    border-radius: 50px;
+    transition: width 0.4s ease;
+  }
+  
+  .progress-text {
+    text-align: center;
+    font-size: 13px;
+    color: var(--mid-green);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* Section */
+  .section {
+    background-color: var(--light-green);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--mid-green);
+  }
+  
+  .section-title {
+    color: var(--dark-green);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--mid-green);
+  }
+  
+  .question {
+    margin-bottom: 22px;
+  }
+  
+  .question > label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    font-size: 15px;
+  }
+  
+  /* Text and Number Inputs */
+  .question input[type="text"],
+  .question input[type="number"],
+  .question textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid var(--mid-green);
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 15px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .question input[type="text"]:focus,
+  .question input[type="number"]:focus,
+  .question textarea:focus {
+    border-color: var(--dark-green);
+    box-shadow: 0 0 0 3px rgba(26, 77, 26, 0.1);
+  }
+  
+  .question textarea {
+    resize: vertical;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Radio Group */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 2px solid var(--mid-green);
+    background-color: #ffffff;
+    transition: all 0.2s;
+    font-size: 15px;
+    color: var(--text-dark);
+  }
+  
+  .radio-group label:hover {
+    background-color: var(--mid-green);
+    color: white;
+  }
+  
+  .radio-group label.selected {
+    background-color: var(--dark-green);
+    color: white;
+    border-color: var(--dark-green);
+  }
+  
+  .radio-group input[type="radio"] {
+    accent-color: var(--dark-green);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  
+  /* Checkbox Group */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 2px solid var(--mid-green);
+    background-color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    color: var(--text-dark);
+  }
+  
+  .checkbox-group label:hover {
+    background-color: var(--mid-green);
+    color: white;
+  }
+  
+  .checkbox-group label.selected {
+    background-color: var(--dark-green);
+    color: white;
+    border-color: var(--dark-green);
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    accent-color: var(--dark-green);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  
+  /* Navigation Buttons */
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  
+  .back-btn {
+    padding: 14px 32px;
+    background-color: white;
+    color: var(--dark-green);
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid var(--dark-green);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .back-btn:hover {
+    background-color: var(--light-green);
+  }
+  
+  .next-btn {
+    margin-left: auto;
+    padding: 14px 32px;
+    background-color: var(--dark-green);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  
+  .next-btn:hover {
+    background-color: var(--mid-green);
+    transform: translateY(-2px);
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--dark-green);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  
+  .submit-btn:hover {
+    background-color: var(--mid-green);
+    transform: translateY(-2px);
+  }
+  
+  .submit-btn:active,
+  .next-btn:active {
+    transform: translateY(0px);
+  }
