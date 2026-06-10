@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -11,6 +12,14 @@ genai.configure(
 )
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class UserProfile(BaseModel):
     name: str
