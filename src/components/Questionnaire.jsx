@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import "./Questionnaire.css"
 
 function Questionnaire() {
@@ -61,10 +63,28 @@ function Questionnaire() {
     window.scrollTo(0, 0)
   }
 
-  const handleSubmit = () => {
-    localStorage.setItem("userprofile", JSON.stringify(formData))
-    navigate("/dashboard")
+  const handleSubmit = async () => {
+
+  try {
+
+    localStorage.setItem(
+      "userprofile",
+      JSON.stringify(formData)
+    );
+
+    await addDoc(
+      collection(db, "users"),
+      formData
+    );
+
+    navigate("/dashboard");
+
+  } catch (error) {
+
+    console.error(error);
+
   }
+};
 
   return (
     <div className="questionnaire-container">
