@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 function Dashboard() {
 
@@ -11,35 +13,61 @@ function Dashboard() {
 
   const generatePlan = async () => {
 
+  try {
+
+    setLoading(true);
+
+    const response = await fetch(
+      "http://127.0.0.1:8000/generate-plan",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(profile),
+      }
+    );
+
+    const data = await response.json();
+
+    setMealPlan(data.meal_plan);
+
     try {
 
-      setLoading(true);
-
-      const response = await fetch(
-        "http://127.0.0.1:8000/generate-plan",
+      await addDoc(
+        collection(db, "mealPlans"),
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(profile),
+          userName: profile?.name || "Unknown",
+          goal: profile?.goal || "",
+          dietType: profile?.dietType || "",
+          budget: profile?.budget || "",
+          activityLevel: profile?.activityLevel || "",
+          mealPlan: data.meal_plan,
+          createdAt: new Date(),
         }
       );
 
-      const data = await response.json();
+      console.log("Meal plan saved successfully!");
 
-      setMealPlan(data.meal_plan);
+    } catch (firestoreError) {
 
-    } catch (error) {
-
-      console.error(error);
-
-    } finally {
-
-      setLoading(false);
+      console.error(
+        "Firestore save failed:",
+        firestoreError
+      );
 
     }
-  };
+
+  } catch (error) {
+
+    console.error(error);
+
+  } finally {
+
+    setLoading(false);
+
+  }
+};
 
   return (
     <div style={{ padding: "40px" }}>
