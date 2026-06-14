@@ -18,11 +18,21 @@ function LandingPage({ onStart }) {
           goals, diet preferences, activity level and budget.
         </p>
 
-        <Link to="/questionnaire">
-  <button className="start-btn">
-    Start Questionnaire →
-  </button>
-</Link>
+        <SignedIn>
+  <Link to="/questionnaire">
+    <button className="start-btn">
+      Start Questionnaire →
+    </button>
+  </Link>
+</SignedIn>
+
+<SignedOut>
+  <SignInButton mode="modal">
+    <button className="start-btn">
+      Sign In to Get Started →
+    </button>
+  </SignInButton>
+</SignedOut>
 
         <div className="features">
 

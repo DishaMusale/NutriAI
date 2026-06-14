@@ -1,7 +1,16 @@
 import Questionnaire from "../components/Questionnaire";
+import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
 
-function QuestionnairePage() {
-  return <Questionnaire />;
+export default function QuestionnairePage() {
+  return (
+    <>
+      <SignedIn>
+        <Questionnaire />
+      </SignedIn>
+
+      <SignedOut>
+        <SignIn />
+      </SignedOut>
+    </>
+  );
 }
-
-export default QuestionnairePage;
