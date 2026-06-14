@@ -26,28 +26,54 @@ class UserProfile(BaseModel):
     goal: str
     dietType: str
     budget: str
+    activityLevel: str
+    proteinPriority: str
     allergies: list[str] = []
 
 @app.post("/generate-plan")
 def generate_plan(profile: UserProfile):
 
     prompt = f"""
-    Generate a personalized 7-day Indian meal plan.
+Create a personalized 7-day Indian meal plan.
 
-    Name: {profile.name}
-    Goal: {profile.goal}
-    Diet Type: {profile.dietType}
-    Budget: {profile.budget}
-    Allergies: {profile.allergies}
+User Details:
+Name: {profile.name}
+Goal: {profile.goal}
+Diet Type: {profile.dietType}
+Budget: {profile.budget}
+Activity Level: {profile.activityLevel}
+Protein Priority: {profile.proteinPriority}
 
-    Include:
-    - Breakfast
-    - Lunch
-    - Dinner
-    - Estimated Calories
+IMPORTANT:
 
-    Make the plan practical and affordable.
-    """
+Return ONLY in this format:
+
+=== DAY 1 ===
+Breakfast: ...
+Lunch: ...
+Dinner: ...
+Snack: ...
+
+=== DAY 2 ===
+Breakfast: ...
+Lunch: ...
+Dinner: ...
+Snack: ...
+
+Continue until DAY 7.
+
+Rules:
+- No introduction
+- No conclusion
+- No markdown
+- No bullet points
+- No explanations
+- Only meal plans
+- Use affordable Indian foods
+- Keep meals practical
+- Respect diet type
+- Match the user's goal
+"""
 
     model = genai.GenerativeModel(
         "models/gemini-2.5-flash"

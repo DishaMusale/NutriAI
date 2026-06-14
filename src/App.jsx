@@ -8,6 +8,7 @@ import {
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import LandingPage from "./components/LandingPage";
 import QuestionnairePage from "./pages/QuestionnairePage";
 import DashboardPage from "./pages/DashboardPage";
 
@@ -17,27 +18,43 @@ function App() {
       <Routes>
 
         <Route
-          path="/"
-          element={
-            <div style={{ padding: "40px" }}>
-              <h1>NutriAI</h1>
+  path="/"
+  element={
+    <div>
 
-              <SignedOut>
-                <SignInButton />
-                <SignUpButton />
-              </SignedOut>
+      <SignedOut>
+        <LandingPage />
 
-              <SignedIn>
-                <UserButton />
-                <br />
-                <br />
-                <a href="/questionnaire">
-                  Start Questionnaire
-                </a>
-              </SignedIn>
-            </div>
-          }
-        />
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "-100px",
+          }}
+        >
+          <SignInButton />
+          <SignUpButton />
+        </div>
+      </SignedOut>
+
+      <SignedIn>
+        <div
+    style={{
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      zIndex: 1000
+    }}
+  >
+    <UserButton />
+  </div>
+  
+        <LandingPage />
+
+      </SignedIn>
+
+    </div>
+  }
+/>
 
         <Route
           path="/questionnaire"

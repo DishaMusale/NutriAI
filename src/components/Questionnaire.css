@@ -20,20 +20,11 @@
   }
   
   .questionnaire-container {
-    max-width: 750px;
-    margin: 40px auto;
-    padding: 20px;
+    width: 95%;
+  max-width: 1400px;
+  margin: 20px auto;
   }
   
-  .main-title {
-    background-color: var(--dark-green);
-    color: var(--text-light);
-    padding: 24px 32px;
-    border-radius: 12px;
-    font-size: 22px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
   
   /* Progress Bar */
   .progress-bar-container {
@@ -41,6 +32,7 @@
     border-radius: 50px;
     height: 10px;
     margin-bottom: 6px;
+    margin-top: 10px;
     overflow: hidden;
     border: 1px solid var(--mid-green);
   }
@@ -62,21 +54,36 @@
   
   /* Section */
   .section {
-    background-color: var(--light-green);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 20px;
-    border-left: 5px solid var(--mid-green);
-  }
-  
-  .section-title {
-    color: var(--dark-green);
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--mid-green);
-  }
+  background: white;
+  border-radius: 36px;
+  padding: 40px 50px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+
+  .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.step-label {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #888;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 8px;
+}
+
+.section-subtitle {
+  color: #888;
+  margin-top: 10px;
+}
   
   .question {
     margin-bottom: 22px;
@@ -84,45 +91,51 @@
   
   .question > label {
     display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--text-dark);
-    font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 10px;
   }
+
+  .question.full-width > label {
+  display: block;
+  text-align: center;
+  margin-bottom: 16px;
+}
   
   /* Text and Number Inputs */
-  .question input[type="text"],
-  .question input[type="number"],
-  .question textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border: 2px solid var(--mid-green);
-    border-radius: 8px;
-    background-color: #ffffff;
-    font-size: 15px;
-    color: var(--text-dark);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  
-  .question input[type="text"]:focus,
-  .question input[type="number"]:focus,
-  .question textarea:focus {
-    border-color: var(--dark-green);
-    box-shadow: 0 0 0 3px rgba(26, 77, 26, 0.1);
-  }
-  
-  .question textarea {
-    resize: vertical;
-    font-family: 'Segoe UI', sans-serif;
-  }
+  .question input,
+.question textarea {
+  width: 100%;
+  height: 40px;
+
+  background: #ffffff !important;
+  color: #1f2937 !important;
+
+  border: 1px solid #d7e6d0;
+  border-radius: 18px;
+
+  padding: 0 20px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.question input:focus,
+.question textarea:focus {
+  border-color: #2d6a2d;
+  box-shadow: 0 0 0 4px rgba(45,106,45,0.1);
+}
   
   /* Radio Group */
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .radio-group{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
   
   .radio-group label {
     display: flex;
@@ -130,13 +143,15 @@
     gap: 10px;
     font-weight: 400;
     cursor: pointer;
-    padding: 11px 14px;
-    border-radius: 8px;
+    border-radius: 20px;
     border: 2px solid var(--mid-green);
     background-color: #ffffff;
     transition: all 0.2s;
     font-size: 15px;
     color: var(--text-dark);
+    min-width: 180px;
+    justify-content: center;
+    padding: 18px;
   }
   
   .radio-group label:hover {
@@ -153,15 +168,17 @@
   .radio-group input[type="radio"] {
     accent-color: var(--dark-green);
     width: 16px;
-    height: 16px;
+    height: 10px;
+    display: none;
     flex-shrink: 0;
+    justify-content: center;
   }
   
   /* Checkbox Group */
   .checkbox-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  flex-wrap: wrap;
+  gap: 16px;
   }
   
   .checkbox-group label {
@@ -192,7 +209,8 @@
   .checkbox-group input[type="checkbox"] {
     accent-color: var(--dark-green);
     width: 16px;
-    height: 16px;
+    height: 10px;
+    display: none;
     flex-shrink: 0;
   }
   
@@ -260,3 +278,15 @@
   .next-btn:active {
     transform: translateY(0px);
   }
+
+  .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.full-width {
+  grid-column: span 2;
+  text-align: center;
+}

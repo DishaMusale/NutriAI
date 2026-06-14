@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import "./Dashboard.css";
 
 function Dashboard() {
 
@@ -69,41 +70,93 @@ function Dashboard() {
   }
 };
 
-  return (
-    <div style={{ padding: "40px" }}>
-      <h1>Welcome {profile?.name} 👋</h1>
+const parseMealPlan = (text) => {
+  if (!text) return [];
 
-      <h2>Your Profile</h2>
+  const matches = text.match(
+    /=== DAY \d+ ===[\s\S]*?(?=(=== DAY \d+ ===|$))/g
+  );
 
-      <p><strong>Goal:</strong> {profile?.goal}</p>
+  return matches || [];
+};
 
-      <p><strong>Diet:</strong> {profile?.dietType}</p>
+const parsedDays = parseMealPlan(mealPlan);
+console.log(parsedDays[0]);
 
-      <p><strong>Budget:</strong> {profile?.budget}</p>
+return (
+  <div className="dashboard-container">
 
-      <p><strong>Activity Level:</strong> {profile?.activityLevel}</p>
+    <div className="dashboard-content">
 
-      <p><strong>Protein Priority:</strong> {profile?.proteinPriority}</p>
+      <div className="welcome-section">
+        <h1>Welcome {profile?.name} 👋</h1>
+        <p>
+          Let's create a personalized nutrition plan for you.
+        </p>
+      </div>
 
-      <button onClick={generatePlan}>
-        Generate Diet Plan
+      <div className="profile-grid">
+
+        <div className="profile-card">
+          <h3>Goal</h3>
+          <p>{profile?.goal}</p>
+        </div>
+
+        <div className="profile-card">
+          <h3>Diet Type</h3>
+          <p>{profile?.dietType}</p>
+        </div>
+
+        <div className="profile-card">
+          <h3>Budget</h3>
+          <p>{profile?.budget}</p>
+        </div>
+
+        <div className="profile-card">
+          <h3>Activity Level</h3>
+          <p>{profile?.activityLevel}</p>
+        </div>
+
+      </div>
+
+      <button
+        className="generate-btn"
+        onClick={generatePlan}
+      >
+        Generate AI Meal Plan
       </button>
 
       {loading && (
-        <p>Generating AI Meal Plan...</p>
+        <div className="loading-box">
+          Creating your personalized meal plan...
+        </div>
       )}
 
       {mealPlan && (
-        <div>
-          <h2>Your Personalized Meal Plan</h2>
+  <div className="meal-section">
 
-          <pre>
-            {mealPlan}
-          </pre>
+    <h2>AI Generated Meal Plan</h2>
+
+    {parsedDays.map((day, index) => {
+      const lines = day.split("\n").filter((line) => line.trim());
+
+      return (
+        <div className="day-card" key={index}>
+          <h3>Day {index + 1}</h3>
+
+          {lines.map((line, i) => (
+            <p key={i}>{line}</p>
+          ))}
         </div>
-      )}
+      );
+    })}
+
+  </div>
+)}
+
     </div>
-  );
+  </div>
+);
 }
 
 export default Dashboard;
