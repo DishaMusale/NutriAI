@@ -24,16 +24,7 @@ function App() {
 
       <SignedOut>
         <LandingPage />
-
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: "-100px",
-          }}
-        >
-          <SignInButton />
-          <SignUpButton />
-        </div>
+        
       </SignedOut>
 
       <SignedIn>

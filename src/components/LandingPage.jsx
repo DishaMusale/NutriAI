@@ -1,5 +1,10 @@
 import "./LandingPage.css";
 import { Link } from "react-router-dom";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton
+} from "@clerk/clerk-react";
 
 function LandingPage({ onStart }) {
   return (
