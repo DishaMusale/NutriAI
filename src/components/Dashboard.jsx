@@ -89,7 +89,7 @@ return (
     <div className="dashboard-content">
 
       <div className="welcome-section">
-        <h1>Welcome {profile?.name} 👋</h1>
+        <h1>Welcome {profile?.name} </h1>
         <p>
           Let's create a personalized nutrition plan for you.
         </p>
@@ -135,7 +135,7 @@ return (
       {mealPlan && (
   <div className="meal-section">
 
-    <h2>AI Generated Meal Plan</h2>
+    <h2>Your Personalized 7-Day Meal Plan</h2>
 
     {parsedDays.map((day, index) => {
       const lines = day.split("\n").filter((line) => line.trim());
@@ -144,9 +144,11 @@ return (
         <div className="day-card" key={index}>
           <h3>Day {index + 1}</h3>
 
-          {lines.map((line, i) => (
-            <p key={i}>{line}</p>
-          ))}
+          {lines
+  .filter(line => !line.includes("=== DAY"))
+  .map((line, i) => (
+    <p key={i}>{line}</p>
+))}
         </div>
       );
     })}
